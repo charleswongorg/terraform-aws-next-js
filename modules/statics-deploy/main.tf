@@ -24,6 +24,8 @@ resource "aws_s3_bucket_ownership_controls" "static_upload_acl_ownership" {
   rule {
     object_ownership = "BucketOwnerEnforced"
   }
+
+  depends_on = [aws_s3_bucket_acl.static_upload]
 }
 
 resource "aws_s3_bucket_notification" "on_create" {
@@ -56,6 +58,8 @@ resource "aws_s3_bucket_ownership_controls" "static_deploy_acl_ownership" {
   rule {
     object_ownership = "BucketOwnerEnforced"
   }
+
+  depends_on = [aws_s3_bucket_acl.static_deploy]
 }
 
 # CloudFront permissions for the bucket
